@@ -9,7 +9,7 @@
 set -euo pipefail
 
 CONDA_ROOT="${CONDA_ROOT:-$HOME/miniconda3}"
-CONDA_ENV="${CONDA_ENV:-base}"
+CONDA_ENV="${CONDA_ENV:-serve-lm}"
 # shellcheck disable=SC1091
 source "$CONDA_ROOT/etc/profile.d/conda.sh"
 conda activate "$CONDA_ENV"

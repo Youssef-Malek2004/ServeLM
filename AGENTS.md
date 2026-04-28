@@ -21,10 +21,11 @@ using `vllm-mlx` (Apple Silicon MLX backend for vLLM). The server is for
   - If a future task needs cross-machine access, **ask the user first**
     — don't unilaterally add LAN binding or tunneling.
 
-- **Use the conda `base` env.** All Python deps (`vllm-mlx`, `aiohttp`,
-  etc.) live in `~/miniconda3` / `base`. Both serve scripts already
-  source `conda.sh` and `conda activate base`. Don't bypass that by
-  calling `vllm-mlx` directly from a fresh shell.
+- **Use the conda `serve-lm` env.** All scripts source `conda.sh` and
+  `conda activate serve-lm`. The env is provisioned by `./setup.sh`,
+  which is idempotent (no-op if `serve-lm` already exists). Don't
+  bypass that by calling `vllm-mlx` directly from a fresh shell.
+  Override with `CONDA_ENV=<name>` if you need a different env.
 
 - **Don't claim Procore IT policy authoritatively.** If a question
   about what's allowed on this Mac comes up, flag uncertainty and tell
@@ -34,6 +35,7 @@ using `vllm-mlx` (Apple Silicon MLX backend for vLLM). The server is for
 
 | File | What it does |
 |---|---|
+| `setup.sh` | Provision the `serve-lm` conda env and install `vllm-mlx` from GitHub (latest). Idempotent: no-op if the env already exists. Run this first on a fresh machine. |
 | `serve-qwen3.sh` | Default launcher: `mlx-community/Qwen3-4b-4bit` on `localhost:8001` with continuous batching, prefix cache, Qwen3 tool/reasoning parsers, `max-num-seqs=4`. |
 | `serve.sh` | Generic launcher. Required: `MODEL=<hf-repo>`. Same defaults otherwise. |
 | `download.sh` | Pre-fetch a model into the HF cache without starting a server. No-ops if already cached. Note: `serve` also auto-downloads on first use — this script is for warming the cache ahead of time. |

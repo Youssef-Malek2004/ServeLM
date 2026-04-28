@@ -9,7 +9,7 @@ set -euo pipefail
 CONDA_ROOT="${CONDA_ROOT:-$HOME/miniconda3}"
 ENV_NAME="${ENV_NAME:-serve-lm}"
 PYTHON_VERSION="${PYTHON_VERSION:-3.13}"
-VLLM_MLX_SPEC="${VLLM_MLX_SPEC:-git+https://github.com/vllm-mlx/vllm-mlx.git}"
+VLLM_MLX_SPEC="${VLLM_MLX_SPEC:-git+https://github.com/waybarrios/vllm-mlx.git}"
 
 if [[ ! -f "$CONDA_ROOT/etc/profile.d/conda.sh" ]]; then
   echo "conda not found at $CONDA_ROOT — install miniconda or set CONDA_ROOT" >&2
